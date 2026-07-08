@@ -20,7 +20,6 @@ export class GildedRose {
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
             let currentItem = this.items[i];
-
             let currentDecrease = 1;
 
             if (currentItem.name == 'Sulfuras, Hand of Ragnaros') {
@@ -32,30 +31,29 @@ export class GildedRose {
                 currentDecrease *= 2;
             }
 
-            if (currentItem.name == 'Aged Brie') {
-                currentItem.quality += currentDecrease;
-                currentItem.quality = Math.min(currentItem.quality, 50);
-                continue;
-            }
-
-            if (currentItem.name == 'Backstage passes to a TAFKAL80ETC concert') {
-                if (currentItem.sellIn < 0) {
-                    currentItem.quality = 0;
+            switch (currentItem.name) {
+                case 'Aged Brie':
+                    currentItem.quality += currentDecrease;
+                    currentItem.quality = Math.min(currentItem.quality, 50);
                     continue;
-                }
-                if (currentItem.sellIn < 10) {
-                    currentDecrease++;
-                }
-                if (currentItem.sellIn < 5) {
-                    currentDecrease++;
-                }
-                currentItem.quality += currentDecrease;
-                currentItem.quality = Math.min(currentItem.quality, 50);
-                continue;
+                case 'Backstage passes to a TAFKAL80ETC concert':
+                    if (currentItem.sellIn < 0) {
+                        currentItem.quality = 0;
+                        continue;
+                    }
+                    if (currentItem.sellIn < 10) {
+                        currentDecrease++;
+                    }
+                    if (currentItem.sellIn < 5) {
+                        currentDecrease++;
+                    }
+                    currentItem.quality += currentDecrease;
+                    currentItem.quality = Math.min(currentItem.quality, 50);
+                    continue;
+                default:
+                    currentItem.quality -= currentDecrease;
+                    currentItem.quality = Math.max(currentItem.quality, 0);
             }
-
-            currentItem.quality -= currentDecrease;
-            currentItem.quality = Math.max(currentItem.quality, 0);
         }
 
         return this.items;
