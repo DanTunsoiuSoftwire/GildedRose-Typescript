@@ -3,10 +3,10 @@ import { Item, GildedRose } from '../app/gilded-rose';
 
 describe('Gilded Rose', function () {
 
-    it('should foo', function() {
-        const gildedRose = new GildedRose([ new Item('foo', 0, 0) ]);
+    it('Test no items', function() {
+        const gildedRose = new GildedRose();
         const items = gildedRose.updateQuality();
-        expect(items[0].name).to.equal('foo');
+        expect(items.length).to.equal(0);
     });
 
 });
