@@ -4,7 +4,7 @@ import {expect} from "chai";
 // Add a master test here
 describe('Gilded Rose', function () {
 
-    it('Golden Master Test', function() {
+    it('Aged Brie checking test', function() {
         let exampleGildedRose = new GildedRose([new Item("Aged Brie", 5, 10)]);
         let items = exampleGildedRose.updateQuality();
         items = exampleGildedRose.updateQuality();
