@@ -24,9 +24,10 @@ export class GildedRose {
             if (currentItem.sellIn < 0) {
                 currentDecrease *= 2;
             }
-            if (currentItem.name != "Sulfuras, Hand of Ragnaros") {
-                currentItem.sellIn--;
+            if (currentItem.name == 'Sulfuras, Hand of Ragnaros') {
+                continue;
             }
+            currentItem.sellIn--;
             if (currentItem.name == 'Aged Brie') {
                 currentItem.quality += currentDecrease;
                 currentItem.quality = Math.min(currentItem.quality, 50);
