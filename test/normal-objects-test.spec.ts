@@ -1,9 +1,9 @@
 ﻿import { Item, GildedRose } from '../app/gilded-rose';
 import {expect} from "chai";
 
-describe('Gilded Rose', function () {
+describe('Normal Objects Tests', function () {
 
-    it('Normal objects test far', function() {
+    it('Check value with lots of sellIn', function() {
         const gildedRose = new GildedRose([ new Item('Sword', 10, 15) ]);
         var items = gildedRose.updateQuality();
         gildedRose.updateQuality();
@@ -13,7 +13,7 @@ describe('Gilded Rose', function () {
         expect(items[0].sellIn).to.equal(6);
     });
 
-    it('Normal objects test near', function() {
+    it('Check Value with small SellIn', function() {
         const gildedRose = new GildedRose([ new Item('Health Potion', 1, 20) ]);
         var items = gildedRose.updateQuality();
         gildedRose.updateQuality();
@@ -23,7 +23,7 @@ describe('Gilded Rose', function () {
         expect(items[0].sellIn).to.equal(-3);
     });
 
-    it('Normal objects test worthless', function() {
+    it('Check Value for quality zero', function() {
         const gildedRose = new GildedRose([ new Item('Self Poison Spell', 1, 1) ]);
         var items = gildedRose.updateQuality();
         gildedRose.updateQuality();

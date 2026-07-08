@@ -1,9 +1,9 @@
 ﻿import { Item, GildedRose } from '../app/gilded-rose';
 import {expect} from "chai";
 
-describe('Gilded Rose', function () {
+describe('Sulfurus Tests', function () {
 
-    it('Check Sulfurus', function() {
+    it('Check constant quality of Sulfurus', function() {
         const gildedRose = new GildedRose([ new Item('Sulfuras, Hand of Ragnaros', 6, 7) ]);
         var items = gildedRose.updateQuality();
         gildedRose.updateQuality();

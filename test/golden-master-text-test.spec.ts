@@ -2,9 +2,9 @@ import { Item, GildedRose } from '../app/gilded-rose';
 import {expect} from "chai";
 
 // Add a master test here
-describe('Gilded Rose', function () {
+describe('Gilded Rose Golder Master Test', function () {
 
-    it('Golden Master Test', function() {
+    it('Check Value of Items', function() {
         let exampleGildedRose = new GildedRose([new Item("Boat", 10, 12), new Item("Plane", 1, 12),
             new Item("Sword", 5, 17), new Item("Backstage passes to a TAFKAL80ETC concert", 10, 12), new Item("Sulfuras, Hand of Ragnaros", 5, 20)]);
         let items = exampleGildedRose.updateQuality();

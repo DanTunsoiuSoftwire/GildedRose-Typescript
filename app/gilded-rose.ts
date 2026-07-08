@@ -17,25 +17,25 @@ export class GildedRose {
         this.items = items;
     }
 
-    updateQualityBackstage(currentItem:Item, currentDecrease:number) {
+    updateQualityBackstage(currentItem:Item, currentIncrease:number) {
         if (currentItem.sellIn < 0) {
             currentItem.quality = 0;
             return;
         }
         if (currentItem.sellIn < 10) {
-            currentDecrease++;
+            currentIncrease++;
         }
         if (currentItem.sellIn < 5) {
-            currentDecrease++;
+            currentIncrease++;
         }
-        currentItem.quality += currentDecrease;
+        currentItem.quality += currentIncrease;
         currentItem.quality = Math.min(currentItem.quality, 50);
     }
 
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
             let currentItem = this.items[i];
-            let currentDecrease = 1;
+            let currentIncrease = 1;
 
             if (currentItem.name == 'Sulfuras, Hand of Ragnaros') {
                 continue;
@@ -43,21 +43,21 @@ export class GildedRose {
 
             currentItem.sellIn--;
             if (currentItem.sellIn < 0) {
-                currentDecrease *= 2;
+                currentIncrease *= 2;
             }
 
             switch (currentItem.name) {
                 case 'Aged Brie':
-                    currentItem.quality += currentDecrease;
+                    currentItem.quality += currentIncrease;
                     currentItem.quality = Math.min(currentItem.quality, 50);
                     continue;
                 case 'Backstage passes to a TAFKAL80ETC concert':
-                    this.updateQualityBackstage(currentItem, currentDecrease);
+                    this.updateQualityBackstage(currentItem, currentIncrease);
                     continue;
                 case 'Conjured Mana Cake':
-                    currentDecrease *= 2;
+                    currentIncrease *= 2;
                 default:
-                    currentItem.quality -= currentDecrease;
+                    currentItem.quality -= currentIncrease;
                     currentItem.quality = Math.max(currentItem.quality, 0);
             }
         }
