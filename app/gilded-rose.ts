@@ -20,11 +20,15 @@ export class GildedRose {
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
             let currentItem = this.items[i];
+            let currentDecrease = 1;
+            if (currentItem.sellIn < 0) {
+                currentDecrease *= 2;
+            }
             if (currentItem.name != "Sulfuras, Hand of Ragnaros") {
                 currentItem.sellIn--;
             }
             if (currentItem.name == 'Aged Brie') {
-                currentItem.quality++;
+                currentItem.quality += currentDecrease;
                 currentItem.quality = Math.min(currentItem.quality, 50);
                 continue;
             }
