@@ -22,15 +22,15 @@ export class GildedRose {
             let currentItem = this.items[i];
 
             let currentDecrease = 1;
-            if (currentItem.sellIn < 0) {
-                currentDecrease *= 2;
-            }
 
             if (currentItem.name == 'Sulfuras, Hand of Ragnaros') {
                 continue;
             }
 
             currentItem.sellIn--;
+            if (currentItem.sellIn < 0) {
+                currentDecrease *= 2;
+            }
 
             if (currentItem.name == 'Aged Brie') {
                 currentItem.quality += currentDecrease;
@@ -54,18 +54,8 @@ export class GildedRose {
                 continue;
             }
 
-            if (this.items[i].quality > 0) {
-                this.items[i].quality = this.items[i].quality - 1
-            }
-            if (this.items[i].sellIn < 0) {
-                if (this.items[i].name != 'Backstage passes to a TAFKAL80ETC concert') {
-                    if (this.items[i].quality > 0) {
-                        this.items[i].quality = this.items[i].quality - 1
-                    }
-                } else {
-                    this.items[i].quality = this.items[i].quality - this.items[i].quality
-                }
-            }
+            currentItem.quality -= currentDecrease;
+            currentItem.quality = Math.max(currentItem.quality, 0);
         }
 
         return this.items;
