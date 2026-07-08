@@ -56,9 +56,6 @@ export class GildedRose {
                     continue;
                 case 'Conjured Mana Cake':
                     currentDecrease *= 2;
-                    currentItem.quality -= currentDecrease;
-                    currentItem.quality = Math.max(currentItem.quality, 0);
-                    continue;
                 default:
                     currentItem.quality -= currentDecrease;
                     currentItem.quality = Math.max(currentItem.quality, 0);
