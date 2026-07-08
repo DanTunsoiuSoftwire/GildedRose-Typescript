@@ -17,6 +17,21 @@ export class GildedRose {
         this.items = items;
     }
 
+    updateQualityBackstage(currentItem:Item, currentDecrease:number) {
+        if (currentItem.sellIn < 0) {
+            currentItem.quality = 0;
+            return;
+        }
+        if (currentItem.sellIn < 10) {
+            currentDecrease++;
+        }
+        if (currentItem.sellIn < 5) {
+            currentDecrease++;
+        }
+        currentItem.quality += currentDecrease;
+        currentItem.quality = Math.min(currentItem.quality, 50);
+    }
+
     updateQuality() {
         for (let i = 0; i < this.items.length; i++) {
             let currentItem = this.items[i];
@@ -37,18 +52,7 @@ export class GildedRose {
                     currentItem.quality = Math.min(currentItem.quality, 50);
                     continue;
                 case 'Backstage passes to a TAFKAL80ETC concert':
-                    if (currentItem.sellIn < 0) {
-                        currentItem.quality = 0;
-                        continue;
-                    }
-                    if (currentItem.sellIn < 10) {
-                        currentDecrease++;
-                    }
-                    if (currentItem.sellIn < 5) {
-                        currentDecrease++;
-                    }
-                    currentItem.quality += currentDecrease;
-                    currentItem.quality = Math.min(currentItem.quality, 50);
+                    this.updateQualityBackstage(currentItem, currentDecrease);
                     continue;
                 case 'Conjured Mana Cake':
                     currentDecrease *= 2;
