@@ -20,4 +20,14 @@ describe('Gilded Rose', function () {
         expect(items[0].sellIn).to.equal(-3);
     });
 
+    it('Aged Brie maximum value test', function() {
+        let exampleGildedRose = new GildedRose([new Item("Aged Brie", 5, 49)]);
+        let items = exampleGildedRose.updateQuality();
+        exampleGildedRose.updateQuality();
+        exampleGildedRose.updateQuality();
+        items = exampleGildedRose.updateQuality();
+        expect(items[0].quality).to.equal(50);
+        expect(items[0].sellIn).to.equal(1);
+    });
+
 });
